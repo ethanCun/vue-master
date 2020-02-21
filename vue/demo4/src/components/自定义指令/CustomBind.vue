@@ -51,6 +51,7 @@ export default {
 
       // 这个时候由内存中挂载到了dom中
       inserted: function (el) {
+        
         el.focus()
         el.style.color = 'red'
       },
