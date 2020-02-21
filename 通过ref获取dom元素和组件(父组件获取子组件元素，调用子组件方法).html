@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>通过ref获取dom元素和组件(父组件获取子组件元素，调用子组件方法)</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<input type="button" value="获取" @click="get"/>
+			
+			<!-- 通过ref获取dom元素 -->
+			<p ref="fatherP">这是父组件上的元素</p>
+			
+			<son ref="sonTmpl"></son>
+		</div>
+		
+		<template id="son">
+			
+			<div>
+				<p>{{smsg}}</p>
+			</div>
+		</template>
+		
+		
+		<script>
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					fmsg: 's'
+				},
+				methods:{
+					
+					get: function(){
+						//访问自己的dom元素
+						console.log('innerText: ' + this.$refs.fatherP.innerText)
+						
+						//父组件访问子组件属性
+						console.log('sonTmpl: ' + this.$refs.sonTmpl.smsg)
+						
+						//父组件访问子组件方法
+						this.$refs.sonTmpl.sonShow()
+					}
+				},
+				components:{
+					
+					son: {
+						template: '#son',
+						data:function(){
+							
+							return {
+								smsg: '这是子组件上的内容'
+							}
+						},
+						methods:{
+							
+							sonShow(){
+								
+								console.log('父组件调用了子组件的sonShow方法')
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

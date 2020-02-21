@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue的过渡动画</title>
+		<script src="js/vue.js"></script>
+
+	</head>
+	<body>
+		
+		<style>
+			
+			/* transition不设置name的情况下 */
+			.v-enter, .v-leave-to{
+				opacity: 0;
+				
+				/* 位移动画 */
+				transform: translateX(200px);
+			}
+			
+			/* 过渡过程 */
+			.v-enter-active, .v-leave-active{
+				/* 过渡动画 */
+				transition: all 1.0s ease;
+			}
+			
+			/* 定义了name的transition动画 */
+			.h6-enter, .h6-leave-to{
+				
+				opacity: 0;
+				transform: translateY(200px);
+			}
+			
+			.h6-enter-active, .h6-leave-active{
+				
+				transition: all 1.0s ease-in-out;
+			}
+			
+		</style>
+		
+		<div id="app">
+			
+			<input type="button" value="toggle" @click="flag=!flag"/>
+			
+			<!-- 用transition包裹需要动画的标签 -->
+			<transition>
+				<p v-show="flag">带动画的el元素需要用transition包裹起来</p>
+			</transition>
+			
+			<transition name="h6">
+				<p v-show="flag">这是一个定义了name的transition</p>
+			</transition>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					flag: false
+				},
+				methods:{
+					
+				}
+			})
+			
+		</script>
+	</body>
+</html>

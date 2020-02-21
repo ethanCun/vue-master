@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>列表循环</title>
+		<script type="text/javascript" src="js/vue.js" charset="UTF-8"></script>
+	</head>
+	<body>
+	
+		<div id="app">
+			
+			<ul>
+				<li v-for="item, index in items" :key="index">
+					{{index}}:{{item.message}}
+				</li>
+			</ul>
+			
+			<ul>
+				<li v-for="item, key in pers" :key="key">
+					{{key}}: {{item}}
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					items:[
+						{message: 'zz'},
+						{message: 'cc'},
+						{message: 'yy'}
+					],
+					pers:{
+						'zhangsan': 30,
+						'wangwu': 40,
+						'lisi': 50
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

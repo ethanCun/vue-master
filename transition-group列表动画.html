@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>animationgroup列表动画</title>
+		<script src="js/vue.js"></script>
+		<style>
+			
+			.zy-enter, .zy-leave-to{
+				opacity: 0;
+				transform: translate(100px, 100px);
+			}
+			
+			.zy-enter-active, .zy-leave-active{
+				transition: all 1s ease-in-out;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<input type="button" value="toggle" @click="flag=!flag"/>
+			
+			<!-- transition只对第一个el标签动画有效 -->
+			<transition name="zy">
+				<p v-show="flag">ppppp transition</p>
+				<p v-show="flag">ppppp transition</p>
+				<span v-show="flag">spanspan</span>
+			</transition>
+			
+			
+			<ul>
+				<transition-group name="zy">
+					<li v-show="flag" v-for="(item, index) in items" class="zyli" :key="index">
+						index:{{index}}--item:{{item.name}}
+					</li>
+				</transition-group>
+			</ul>
+			
+			<ul>
+				<!-- transition只对第一个el标签动画有效 -->
+				<transition name="zy">
+					<li v-show="flag" v-for="(item, index) in items" class="zyli" :key="index">
+						index:{{index}}--item:{{item.name}}
+					</li>
+				</transition>
+			</ul>
+		</div>
+		
+		
+		<script>
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					items:[
+						{name:'zhangsan'},
+						{name:'lisi'},
+						{name:'wangwu'}
+					],
+					flag: false
+				},
+				methods:{
+					
+				}
+			})
+		</script>
+		
+	</body>
+</html>

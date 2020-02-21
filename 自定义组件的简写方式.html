@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自定义组件的简写方式</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<login></login>
+		</div>
+		
+		<template id="login">
+			<div>
+				<h1>登录页面</h1>
+			</div>
+		</template>
+		
+		<script>
+			
+			// Vue.component('login', {
+			// 	template:'#login'
+			// })
+			
+			//在外部预先定义好template组件对象
+			var login = {
+				template: '#login'
+			}
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				methods:{
+					
+				},
+				components:{
+					
+					//方式一:
+					// login:{
+					// 	template:'#login'
+					// }
+					
+					//方式二:
+					// login: login
+					
+					//方式三: 这个时候组件名称就是组件对象变量名login
+					login
+				}
+			})
+		</script>
+	</body>
+</html>

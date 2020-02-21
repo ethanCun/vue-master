@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue中的过滤器</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			{{msg | danchun('疯狂') | test}}
+			
+			<p>{{num.toString().padStart(4, '0')}}</p>
+		</div>
+		
+		<script>
+			
+			//定义一个全局的过滤器
+			Vue.filter('danchun', function(msg, arg){
+				
+				return msg.replace(/单纯/g, arg)
+			})
+			
+			Vue.filter('test', function(content){
+				return content + '===='
+			})
+			
+			//vm
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					msg:'曾经的我是一个单纯的少年，单纯的很单纯。',
+					num:1
+				},
+				methods:{
+					
+				}
+			})
+			
+
+		</script>
+	</body>
+</html>

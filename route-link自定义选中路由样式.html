@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>route-link自定义选中路由样式</title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+		
+		<style>
+			
+			/* .router-link-active{
+				
+				color: #FF0000;
+			} */
+			
+			/* 自定义的选中路由样式 */
+			.my-router-link-active{
+				color: #FFC0CB;
+			}
+			
+			/* 添加动画 */
+			.zy-enter, .zy-leave-to{
+				opacity: 0;
+				transform: translateY(50px);
+			}
+			
+			.zy-enter-active, .zy-leave-active{
+				transition: all 0.3s ease-in-out;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<router-link to="/login">登录</router-link>
+			<router-link to="/register">注册</router-link>
+			
+			<transition mode="out-in" name="zy">
+				<router-view></router-view>
+			</transition>
+		</div>
+		
+		<script>
+			
+			var login = {
+				template: '<h1>这是登陆页面</h1>'
+			}
+			
+			var register = {
+				template: '<h1>这是注册页面</h1>'
+			}
+			
+			var router = new VueRouter({
+				linkActiveClass: 'my-router-link-active',
+				routes: [
+					{
+						path: '/',
+						redirect: '/login'
+					},
+					{
+						path: '/login',
+						component: login
+					},
+					{
+						path: '/register',
+						component: register
+					}
+				]
+			})
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					
+				},
+				methods:{
+					
+				},
+				router: router
+			})
+		</script>
+		
+	</body>
+</html>

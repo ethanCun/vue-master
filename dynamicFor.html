@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue搜索改变列表</title>
+		<script type="text/javascript" charset="UTF-8" src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<div>
+				<input type="text" value="keywords" v-model="keywords"/>
+				<input type="button" value="search" @click="search"/>
+			</div>
+			
+			<p v-for="(item, index) in search()" :key="index">
+				{{index}}, {{item.name}}
+			</p>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					keywords:'',
+					persons:[
+						{name:'zhangsan'},
+						{name:'lisi'},
+						{name:'wangwu'}
+					]
+				},
+				methods:{
+					
+					search:function(){
+						
+						var results = []
+						
+						this.persons.filter((item)=>{
+							
+							if(item.name.indexOf(this.keywords) != -1){
+								results.push(item)
+							}
+						})
+						
+						return results
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

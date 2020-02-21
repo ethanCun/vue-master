@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>使用watch观察data中属性的变化</title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<input type="text" v-model="firstname" placeholder="请输入firstname"/>
+			+
+			<input type="text" v-model="lastname" placeholder="请输入lastname"/>
+			=
+			<input type="text" v-model="fullname" />
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					firstname: '',
+					lastname: '',
+					fullname: ''
+				},
+				watch:{
+					
+					//在watch内观察data中属性的变化
+					firstname: function(newVal, oldVal){
+						
+						console.log('new: ' + newVal + ' old: ' + oldVal);
+						this.fullname = newVal + "-" + this.lastname;
+					},
+					lastname: function(newVal, oldVal){
+						
+						console.log('new: ' + newVal + ' old: ' + oldVal);
+						this.fullname = this.firstname + "-" + newVal
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

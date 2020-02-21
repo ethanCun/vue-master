@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>父组件向子组件传值</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<!-- 通过在子组件上绑定父组件属性， 父组件向子组件传值 -->
+			<com1 :cmsg="pmsg"></com1>
+		</div>
+		
+		<script>
+
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					pmsg:'这是父组件中的msg'
+				},
+				methods:{
+					
+				},
+				components:{
+					
+					com1: {
+						template:'<h3  @click="change">在子组件中打印父组件的对象msg为:{{cmsg}}</h3>',
+						data(){
+							
+							return {
+								username:'',
+								password:''
+							}
+						},
+						props:[
+							
+							//接受父组件向子组件传的值 只读 强行修改Vue会报错
+							'cmsg'
+						],
+						methods:{
+							
+							//报错:avoid mutating a prop directly..
+							//use a data or computed perperty instead..
+							change:function(){
+								this.cmsg = "cmsg被改变了"
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

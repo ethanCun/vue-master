@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>子路由children的使用</title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<router-link to="/account">账户操作页面</router-link>
+			
+			
+			<router-view></router-view>
+		</div>
+		
+		<template id="account">
+			
+			<div>
+				<p>这是账户操作页面</p>
+				
+				<!-- login和register是account的子组件 -->
+				<router-link to="/account/login">登录</router-link>
+				<router-link to="/account/register">注册</router-link>
+				
+				<!-- 在父组件上加上占位符 -->
+				<router-view></router-view>
+			</div>
+		</template>
+		
+		<script>
+			
+			var account = {
+				template: '#account'
+			}
+			
+			var login = {
+				template: '<p>这是登录页面</p>'
+			}
+			
+			var register = {
+				template: '<p>这是注册页面</p>'
+			}
+			
+			var router = new VueRouter({
+				routes:[
+					{
+						path: '/account', 
+						component: account,
+						children: [
+							
+							//注意:children下的path不要加/, 否则route-link的to应该改为/login,
+							//这样相当于是直接找到了login组件, 但其实他是account组件的子组件,
+							//显然这样很不友好
+							{
+								path: 'login',
+								 component: login
+							},
+							{
+								path: 'register',
+								component: register
+							}
+						]
+					}
+				]
+			})
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					
+				},
+				methods:{
+					
+				},
+				router
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>使用Vue.extend来创建全局的组件</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<!-- 直接使用组件名称 以html标签形式引入页面 -->
+			<!-- 引用的时候有驼峰规则转换为-链接 -->
+			<!-- 没有用驼峰的时候不能用-连接 -->
+			<my-com1></my-com1>
+			<mycom2></mycom2>
+		</div>
+		
+		<script>
+			
+			//1.1使用Vue.extend来创建全局的组件
+			var com1 = Vue.extend({
+				template: '<h3>这是使用Vue.extend创建的组件</h3>' ,//指定组件要显示的html
+				
+			})
+			//1.2全局注册创建的组件：使用Vue.component('组件的名称', '创建出来的组件模板对象')
+			Vue.component('myCom1', com1)
+			
+			var com2 = Vue.extend({
+				template:'<h1>这是一个h1标签</h1>'
+			})
+			
+			Vue.component('mycom2', com2);
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				methods:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>

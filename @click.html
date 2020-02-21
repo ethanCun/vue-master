@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件</title>
+		<script type="text/javascript" src="js/vue.js" charset="UTF-8"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<p v-on:click="num = num + 1">{{num}}</p>
+			<button @click="alert('hi~')">hi~</button>
+			<button @dblclick="dblClick">双击666</button>
+		</div>
+		
+		<script type="text/javascript">
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					num: 10
+				},
+				methods:{
+					alert: function(msg){
+						alert(msg)
+					},
+					dblClick:function(){
+						alert('666')
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue-键盘响应事件</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<input type="text" @keyup.u="keyup" v-model="msg" @keydown="keydown" 
+			@keypress="keypress"/>
+			
+			<!-- 同时按下u和enter触发 -->
+			<input type="text" v-model="msg" @keyup.u.enter="clear"/>
+			
+			<!-- 系统修饰符, 按住shift同时点击才触发事件 -->
+			<input type="button" value="点击" @click.shift="keypress" />
+		</div>
+		
+		<script>
+			
+			//自定义全局按键修饰符
+			Vue.config.keyCodes.u=85
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					msg:''
+				},
+				methods:{
+					
+					keyup:function(){
+						
+						console.log("keyup")
+					},
+					keypress:function(){
+						
+						console.log("keypress")
+					},
+					keydown:function(){
+						
+						console.log("keydown")
+					},
+					clear:function(){
+						
+						this.msg = ""
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

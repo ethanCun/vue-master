@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue的指令</title>
+		<script type="text/javascript" src="js/vue.js" charset="UTF-8"></script>
+	</head>
+	<body>
+		
+		
+		<div id="app">
+			
+			<p v-if="seen">现在你看到我了</p>
+			
+			<a v-bind:href="baidu">点击跳转</a>
+			
+			<div @click="click">click</div>
+			
+			<div @click="click1">
+				
+				<div @click.stop="click2">
+					
+					点击
+				</div>
+			</div>
+			
+		</div>
+		
+
+		
+		<script>
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					seen: true,
+					baidu: "http://www.baidu.com"
+				},
+				methods:{
+					
+					click1: function(){
+						console.log("click1")
+					},
+					click2: function(){
+						console.log('click2')
+					},
+					click: function(){
+						
+						console.log('click')
+					}
+				}
+			})
+		</script>
+		
+	</body>
+</html>

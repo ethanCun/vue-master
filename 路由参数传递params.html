@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>路由使用params传递参数</title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<router-link to="/login/1/zhangsan/29">登录</router-link>
+			<router-link to="/register">注册</router-link>
+			
+			<router-view></router-view>
+		</div>
+		
+		<script>
+			
+			var login = {
+				template: '<h1>登录, id:{{$route.params.id}}, name:{{$route.params.name}},'+
+				 ' age:{{$route.params.age}}</h1>'
+			}
+			
+			var register = {
+				template: '<h1>注册</h1>'
+			}
+			
+			var router = new VueRouter({
+				routes:[
+					{
+						path: "/",
+						redirect: '/login'
+					},
+					{
+						//params方式路由写法 注意参数数量必须对应 否则路由失效
+						path: '/login/:id/:name/:age',
+						component: login
+					},
+					{
+						path: '/register',
+						component: register
+					}
+				]
+			})
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					
+				},
+				router
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-move动画使用</title>
+		<script src="js/vue.js"></script>
+		<style>
+
+			.pp:hover{
+				
+				width: 100%;
+				background-color: pink;
+				transition: all 1s ease;
+			}
+
+			.zy-enter, .zy-leave-to{
+				opacity: 0;
+				/* transform: translateY(80px); */
+			}
+			
+			.zy-enter-active, .zy-leave-active{
+				transition: all 1s ease-in-out;
+			}
+			
+			.zy-move{
+				
+				/* transition:  all 1s ease; */
+			}
+			
+			.zy-leave-active{
+				
+				/* position: absolute; */
+			}
+			
+			.ppp-enter, .ppp-leave-to{
+				
+				opacity: 0;
+			}
+			
+			.ppp-enter-active, .ppp-leave-active{
+				
+				transition: all 1s ease;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="app">
+
+			<input type="button" value="toggle" @click="flag=!flag" />
+
+			<!-- <transition-group appear>
+				
+				<div v-show="flag" v-for="(item1, index1) in list" :key="index1">
+				
+					<span>index1:{{index1}}</span>
+				
+					<div v-for="(item2, index2) in item1" :key="index2">
+				
+						<span>index2:{{index2}}, item2:{{item2.name}}</span>
+					</div>
+				</div>
+			</transition-group> -->
+
+			<!-- <ul> -->
+				
+				<!-- tag:将外层设置为ul  不设置的话默认渲染为span -->
+				<!-- <transition-group name="zy" tag="ul">
+					
+					<li v-show="flag" v-for="(item, index) in list2" :key="index">
+						
+						<p class="pp" @click="del(index)">index:{{index}}, item:{{item}}</p>
+					</li>
+				</transition-group> -->
+			<!-- </ul> -->
+
+
+			<transition name="ppp" appear>
+				
+				<p v-show="flag">gggggggg</p>
+			</transition>
+		</div>
+
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					list: [
+						[{
+								name: 'zhangsan1'
+							},
+							{
+								name: 'lisi1'
+							},
+							{
+								name: 'wangwu1'
+							}
+						],
+						[{
+								name: 'zhangsan2'
+							},
+							{
+								name: 'lisi2'
+							},
+							{
+								name: 'wangwu2'
+							}
+						]
+					],
+					list2: [{
+							name: 'zhangsan2'
+						},
+						{
+							name: 'lisi2'
+						},
+						{
+							name: 'wangwu2'
+						}
+					],
+					flag: false
+				},
+				methods:{
+					
+					del:function(index){
+						
+						this.list2.splice(index, 1)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

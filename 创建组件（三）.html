@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建组件（三）</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<!-- 引用自定义的组件 -->
+			<com1></com1>
+		</div>
+		
+		<!-- 在外部自定义template模板 使用template的id引用 -->
+		<template id="tmpl">
+			
+			<div>
+				<h1>这是一个h1标签</h1>
+				<p>这是一个p标签</p>
+			</div>
+		</template>
+		
+		<script>
+			
+			//创建并注册一个组件
+			Vue.component('com1', {
+				template:'#tmpl'
+			})
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				methods:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>

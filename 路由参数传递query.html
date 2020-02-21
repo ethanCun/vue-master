@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>路由组件参数传递query</title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<router-link to="/login?id=1&name=zhangsan&age=200">登录</router-link>
+			<router-link to="/register">注册</router-link>
+			
+			<router-view></router-view>
+		</div>
+		
+		<script>
+			
+			var login = {
+				template: '<h1>登陆:id:{{$route.query.id}}, name:{{$route.query.name}}, age: {{$route.query.age}}'+ 
+				' path:{{$route.path}}, fullPath:{{$route.fullPath}}</h1>',
+				created(){
+					
+					
+				}
+			}
+			
+			var register = {
+				template: '<h1>注册</h1>'
+			}
+			
+			var router = new VueRouter({
+				routes:[
+					{
+						path: '/',
+						redirect: '/login'
+					},
+					{
+						path: '/login',
+						component: login
+					},
+					{
+						path: '/register',
+						component: register
+					}
+				]
+			})
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				components:{
+					
+				},
+				router: router
+			})
+		</script>
+	</body>
+</html>

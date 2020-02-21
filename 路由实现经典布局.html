@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>路由实现经典布局</title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+		<style>
+			
+			html, body{
+				margin: 0;
+				padding: 0;
+			}
+			
+			h1{
+				margin: 0;
+				padding: 0;
+			}
+			
+			.header{
+				background-color: #FF0000;
+				height: 60px;
+				line-height: 60px;
+			}
+			
+			.container{
+				
+				height: 600px;
+				display: flex;
+			}
+			
+			.left{
+				
+				background: #008000;
+				flex: 1;
+			}
+			
+			.right{
+				
+				background: pink;
+				flex: 2;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<!-- 同一个url加载多个组件时， 通过设置router-view的name加载不同的组件, 不设置name
+			 的时候默认加载default-->
+			<router-view></router-view>
+			
+			<div class="container">
+				<router-view name="left"></router-view>
+				<router-view name="right"></router-view>
+			</div>
+			
+		</div>
+		
+		<template id="header">
+			<div class="header">
+				<h1>这是header区域</h1>
+			</div>
+		</template>
+		
+		<template id="left">
+			<div class="left">
+				这是左侧区域
+			</div>
+		</template>
+		
+		<template id="right">
+			<div class="right">
+				这是右侧区域
+			</div>
+		</template>
+		
+		<script>
+			
+			var header = {template: '#header'};
+			var left = {template: '#left'};
+			var right = {template: '#right'};
+			
+			var router = new VueRouter({
+				routes: [
+					
+					//配置一个url对应加载多个组件(components)
+					//一个url对应加载一个组件(component)
+					{
+						path: '/',
+						components: {
+							'default': header, //没有设置组件的
+							left: left, //可以不写''
+							right //简写方式
+						}
+					}
+				]
+			})
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				router
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue自动获取焦点: 自定义指令</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			{{msg}}
+			
+			<input id="my" v-model="msg" v-focus/>
+		</div>
+
+		
+		<script>
+			
+			//使用Vue.directive定义全局的指令
+			Vue.directive('focus', {
+				
+				//自定义指令绑定dom元素的时候调用
+				bind: function(el){
+					
+				},
+				
+				//元素input插入dom树中的时候调用 el:带有v-focus的dom元素
+				inserted: function(el){
+					
+					el.focus()
+				},
+				
+				//所在组件的VNode更新时调用
+				updated: function(el){
+					
+					
+				}
+			})
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					msg:''
+				},
+				methods:{
+					
+				},
+				filters:{
+					
+				}
+			})
+		</script>
+
+	</body>
+</html>

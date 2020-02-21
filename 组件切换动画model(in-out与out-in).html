@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件切换动画</title>
+		<script src="js/vue.js"></script>
+		
+		<style>
+			
+			.v-enter, .v-leave-to{
+				opacity: 0;
+				transform: translateX(100px);
+			}
+			
+			.v-enter-active, .v-leave-active{
+				transition: all 0.2s ease;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<input type="button" value="登录" @click="login"/>
+			<input type="button" value="注册" @click="register" />
+			
+			<!-- in-out：新元素先进行过渡，完成之后当前元素过渡离开。 -->
+			<!-- out-in：当前元素先进行过渡，完成之后新元素过渡进入。 -->
+			<transition mode="out-in">
+				<component :is="componentName"></component>
+			</transition>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					componentName:'login'
+				},
+				methods:{
+					
+					login: function(){
+						this.componentName = "login"
+					},
+					register: function(){
+						this.componentName = "register"
+					}
+				},
+				components:{
+					
+					login: {
+						template:'<h1>这是登录页面</h1>'
+					},
+					register:{
+						template:'<h1>这是注册页面</h1>'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

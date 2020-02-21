@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>input事件在vue中的使用</title>
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<!-- onfocus 当input 获取到焦点时触发 -->
+			<!-- onblur 当input失去焦点时触发，注意：这个事件触发的前提是已经获取了焦点再失去焦点的时候会触发相应的js -->
+			<!-- onchange 当input失去焦点并且它的value值发生变化时触发 -->
+			<!-- onkeydown 在 input中有键按住的时候执行一些代码 -->
+			<!-- onkeyup 在input中有键抬起的时候触发的事件，在此事件触发之前一定触发了onkeydown事件 -->
+			<!-- onclick 主要是用于 input type=button，当被点击时触发此事件 -->
+			<!-- onselect 当input里的内容文本被选中后执行一段，只要选择了就会触发，不是非得全部选中 -->
+			<!-- oninput 当input的value值发生变化时就会触发，不用等到失去焦点（与onchange的区别） -->
+			<input type="text" v-model="msg" @focus="focus" @blur="blur"
+			 @change="change" @keydown="keydown" @keyup="keyup"
+			 @select="select" @input="input" name="contents" placeholder="请输入"/>
+
+			<input type="checkbox" checked=""/>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: '#app',
+				data:{
+					msg:''
+				},
+				methods:{
+					focus(){
+						console.log('focus: ' + this.msg);
+					},
+					blur(){
+						console.log('blur: ' + this.msg);
+					},
+					change: function(){
+						console.log('change: ' + this.msg);
+					},
+					keydown:function(){
+						console.log('keydown: ' + this.msg);
+					},
+					keyup:function(){
+						console.log('keyup: ' + this.msg);
+					},
+					select:function(){
+						console.log('select: ' + this.msg);
+					},
+					input:function(){
+						console.log('input: ' + this.msg);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

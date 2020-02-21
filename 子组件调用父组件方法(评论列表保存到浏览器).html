@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>子组件调用父组件方法</title>
+		<script src="js/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			
+			<comment @get-comment="getCommentsFromLocal"></comment>
+			
+			<ul>
+				<li v-for="(item, index) in comments">
+					index:{{index}}, item:{{item.date}}--{{item.comment}}--{{item.author}}
+				</li>
+			</ul>
+		</div>
+		
+		<template id="comment">
+			<div>
+				<label>
+					评论内容:
+					<input type="text" v-model="comment" placeholder="请输入评论内容"/>
+				</label>
+				<br />
+				<label>
+					评论人:
+					<input type="text" v-model="author" placeholder="请输入评论人" />
+				</label>
+				<br />
+				<label>
+					<input type="button" value="提交" @click="submit" />
+				</label>
+			</div>
+		</template>
+		
+		
+		<script>
+			
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					comments:[
+						{date:'', comment:'', author:''}
+					]
+				},
+				methods:{
+					
+					//从localstorage中获取所有评论信息
+					getCommentsFromLocal(){
+						
+						var localComments = localStorage.getItem('comments');
+						
+						//localComments为undefined或者'', 调用JSON.parse()会报错
+						this.comments = JSON.parse(localComments || '[]')
+						
+						console.log("comments = " + JSON.stringify(this.comments))
+					}
+				},
+				components:{
+					comment:{
+						template:'#comment',
+						data(){
+							return {
+								comment: '',
+								author: ''
+							}
+						},
+						methods:{
+							
+							submit(){
+								
+								var curComment = {date: new Date(), comment: this.comment, author: this.author}
+							
+								var localCommentStr = localStorage.getItem('comments')
+								
+								var localComments = []
+								 
+								localComments = JSON.parse(localCommentStr || '[]')
+								
+								localComments.push(curComment)
+								
+								localStorage.setItem('comments', JSON.stringify(localComments))
+								
+								this.$emit('get-comment')
+							}
+						}
+						
+					}
+				},
+				created(){
+					
+					//进来的时候就从localStorage中获取缓存的评论列表
+					this.getCommentsFromLocal()
+				}
+			})
+		</script>
+	</body>
+</html>
