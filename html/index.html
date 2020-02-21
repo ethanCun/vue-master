@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   			
+   		});
+   		
+    </script>
+	<script src="js/vue.js" type="text/javascript" charset="UTF-8"></script>
+</head>
+<body>
+	
+	<div id="app">
+		{{a}}
+	</div>
+	
+	<script>
+		
+		var data = {a:100}
+		
+		// Object.freeze(data);
+		
+		var vm = new Vue({
+			el: '#app',
+			data: data
+		})
+		
+		// data.a = 200
+		
+		// vm.a = 300
+		// data.a == vm.a
+		
+		// data.b = 00
+		// data.b = 999
+		// data.c = 200
+		
+		// data.d = 9
+		// vm.d = 88
+		
+		vm.$data.a = 999
+		
+		vm.$watch('a', function(newVal, oldVal){
+			
+			console.log('new: ' + newVal + ' old: ' + oldVal);
+		})
+		
+		vm.$data.a = 0
+		
+	</script>
+	
+	
+	
+</body>
+</html>
