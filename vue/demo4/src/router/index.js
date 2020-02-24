@@ -170,6 +170,18 @@ export default new Router({
       name: 'computed',
       path: '/computed',
       component: Computed
-    }
+    },
+	
+//vuex状态管理
+	{
+	  name: 'Count',
+	  path: '/count',
+	  component: Count
+	},
+	{
+	  name: 'GetCount',
+	  path: '/getCount',
+	  component: GetCount
+	}
   ]
 })

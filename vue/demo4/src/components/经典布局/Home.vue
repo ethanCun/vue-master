@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 import First from './First.vue'
 import Second from './second.vue'
 
@@ -29,34 +28,33 @@ export default {
     Second
   }
 }
-
 </script>
 
 <style>
-
-  .header{
+  .header {
     background: green;
     height: 50px;
   }
 
-  .container{
+  .container {
 
     height: 600px;
     display: flex;
     flex-direction: row;
   }
 
-  .first{
+  .first {
     flex: 1;
     background: yellow;
   }
 
-  .second{
+  .second {
     flex: 5;
     background: red;
   }
 
-  body, html{
+  body,
+  html {
     margin: 0;
     padding: 0;
   }

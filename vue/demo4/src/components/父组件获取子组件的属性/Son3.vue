@@ -6,14 +6,14 @@
 
 <script>
 
-  export default{
-    name: 'son3',
-    data(){
-      return {
-        son3msg: '这是子组件中data属性，来自son3'
-      }
+export default{
+  name: 'son3',
+  data () {
+    return {
+      son3msg: '这是子组件中data属性，来自son3'
     }
   }
+}
 </script>
 
 <style>

@@ -3,13 +3,12 @@
   <div>
 
     自定义指令演示自动聚焦:<br />
-    未添加自定义指令的input: <input type="text" v-red/><br />
-    添加自定义指令的input: <input type="text" v-focus/>
+    未添加自定义指令的input: <input type="text" v-red /><br />
+    添加自定义指令的input: <input type="text" v-focus />
   </div>
 </template>
 
 <script>
-
 import Vue from 'vue'
 
 // 全局定义指令 名称前面不带v-  通过v-red调用自定义好的指令 不推荐全局 因为directive名称可能重复
@@ -51,7 +50,6 @@ export default {
 
       // 这个时候由内存中挂载到了dom中
       inserted: function (el) {
-        
         el.focus()
         el.style.color = 'red'
       },

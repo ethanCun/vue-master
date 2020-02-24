@@ -1,15 +1,15 @@
 <template>
 
   <div class="computed">
-    <input type="text" v-model="name"/>
-    <input type="text" v-model="age"/>
+    <input type="text" v-model="name" />
+    <input type="text" v-model="age" />
 
     <p>使用计算属性computed观察属性变化: {{name}}, {{age}}, {{changeMsg}}</p>
   </div>
 </template>
 
 <script>
-export default{
+export default {
   name: 'computed',
   data () {
     return {

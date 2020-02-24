@@ -18,7 +18,7 @@
 </template>
 
 <script>
-export default{
+export default {
   name: 'watch',
   data () {
     return {
@@ -30,13 +30,11 @@ export default{
   watch: {
 
     msg: function (newVal, oldVal) {
-
       this.changeMsg = 'msg, new: ' + newVal + ' old: ' + oldVal
     },
 
-    //当被观察的对象名称中有-， 或者是观察对象.属性时，需要用引号括起来
-    '$route.path': function(newVal, oldVal){
-
+    // 当被观察的对象名称中有-， 或者是观察对象.属性时，需要用引号括起来
+    '$route.path': function (newVal, oldVal) {
       this.routerChangeMsg = 'router, new: ' + newVal + ' oldVal: ' + oldVal
     }
   }

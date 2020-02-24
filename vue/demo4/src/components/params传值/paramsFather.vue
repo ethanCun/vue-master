@@ -4,8 +4,8 @@
 
     <form>
 
-      <label>name:</label><input type="text" v-model="name"/><br />
-      <label>age:</label><input type="text" v-model="age"/><br />
+      <label>name:</label><input type="text" v-model="name" /><br />
+      <label>age:</label><input type="text" v-model="age" /><br />
 
       <!-- 静态传参 用to指定-->
       <router-link to="/paramsSon/10/zhangsan/28">点击静态传参</router-link><br />
@@ -23,22 +23,28 @@
 </template>
 
 <script>
-export default{
+export default {
   name: 'paramsFather',
-  data(){
+  data () {
     return {
-      id: Math.random()*100,
+      id: Math.random() * 100,
       name: '',
       age: 0
     }
   },
-  methods:{
+  methods: {
 
-    paramsSend: function(){
+    paramsSend: function () {
+      this.$router.push({
+        name: 'paramsSon',
+        params: {
+          id: this.id,
+          name: this.name,
+          age: this.age
+        }
+      })
 
-      this.$router.push({name: 'paramsSon', params:{id: this.id, name: this.name, age: this.age}})
-      
-      //用path不行， 因为param方式传参， 在路由中设置了path的格式为、paramsSon/:id/:name/:age
+      // 用path不行， 因为param方式传参， 在路由中设置了path的格式为、paramsSon/:id/:name/:age
       // this.$router.push({path: 'paramsSon', params: {id: this.id, name: this.name, age: this.age}})
     }
   }

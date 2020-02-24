@@ -1,12 +1,11 @@
 <template>
   <div>
-    
+
   </div>
 </template>
 
 <script>
-
-export default{
+export default {
   name: 'son4',
   data: function () {
     return {}

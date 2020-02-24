@@ -8,10 +8,9 @@
 </template>
 
 <script>
-
 import son from './Son2.vue'
 
-export default{
+export default {
   name: 'Father2',
   data () {
     return {}
